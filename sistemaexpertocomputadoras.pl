@@ -4,17 +4,17 @@ opciones_ram(['8GB', '16GB', '32GB', '64GB']).
 opciones_almacenamiento(['256GB SSD', '512GB SSD', '1TB SSD', '2TB SSD']).
 opciones_placa_base(['ASUS ROG Strix', 'MSI B450', 'Gigabyte Z490', 'ASRock B550']).
 opciones_fuente_alimentacion(['500W', '650W', '750W', '850W']).
-opciones_refrigeracion(['Aire', 'Líquida', 'Disipador']).
+opciones_refrigeracion(['Aire', 'Liquida', 'Disipador']).
 
 opcion(personalizada, 'Configurador personalizado en desarrollo...').
 
-opcion_predisenada('Programación', alta,
+opcion_predisenada('Programacion', alta,
     ['Intel Core i9, 32GB RAM, 1TB SSD, RTX 3080',
      'AMD Ryzen 9, 32GB RAM, 1TB SSD, RTX 3080']).
-opcion_predisenada('Programación', media,
+opcion_predisenada('Programacion', media,
     ['Intel Core i7, 16GB RAM, 512GB SSD, GTX 1660',
      'AMD Ryzen 7, 16GB RAM, 512GB SSD, GTX 1660']).
-opcion_predisenada('Programación', baja,
+opcion_predisenada('Programacion', baja,
     ['Intel Core i5, 8GB RAM, 256GB SSD, GTX 1050',
      'AMD Ryzen 5, 8GB RAM, 256GB SSD, GTX 1050']).
 
@@ -76,7 +76,7 @@ preguntar_componente(fuente_alimentacion, Respuesta) :-
 
 preguntar_componente(refrigeracion, Respuesta) :-
     opciones_refrigeracion(Opciones),
-    write('Elige la refrigeración:'), nl,
+    write('Elige la refrigeracion:'), nl,
     listar_opciones(Opciones),
     read(Opcion),
     nth1(Opcion, Opciones, Respuesta).
@@ -93,7 +93,7 @@ listar_opciones([Opcion | Resto], Indice) :-
 
 % Sistema experto actualizado
 sistema_experto :-
-    write('¿Qué tipo de computadora deseas?'), nl,
+    write('Que tipo de computadora deseas?'), nl,
     write('1. Personalizada'), nl,
     write('2. Prediseñada'), nl,
     read(Tipo),
@@ -104,7 +104,7 @@ sistema_experto :-
             configuracion_predisenada
     ).
 
-% Configuración personalizada
+% Configuraci�n personalizada
 configuracion_personalizada :-
     write('Configurador personalizado...'), nl,
     preguntar_componente(procesador, Procesador),
@@ -113,19 +113,105 @@ configuracion_personalizada :-
     preguntar_componente(placa_base, PlacaBase),
     preguntar_componente(fuente_alimentacion, Fuente),
     preguntar_componente(refrigeracion, Refrigeracion),
-    evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Compatibilidad),
-    calcular_uso_total(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, UsoTotal),
-    clasificar_gama_uso(Procesador, RAM, Gama, Uso),
-    resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal).
+    (evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Compatibilidad) ->
+        calcular_puntuacion(Procesador, RAM, Puntuacion),
+        clasificar_gama_uso(Procesador, RAM, Gama, Uso),
+        resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal);
+        write('Los componentes seleccionados no son compatibles.'), nl).
 
 % Evaluar compatibilidad
-evaluar_compatibilidad(_, _, _, _, _, _, 'Compatible'). % Placeholder
+evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Compatibilidad) :-
+    (compatible_procesador_placabase(Procesador, PlacaBase) ->
+        (compatible_ram_placabase(RAM, PlacaBase) ->
+            (compatible_almacenamiento_placabase(Almacenamiento, PlacaBase) ->
+                (suficiente_potencia(Fuente, Procesador, RAM, Almacenamiento, PlacaBase, Refrigeracion) ->
+                    (refrigeracion_adecuada(Refrigeracion, Procesador) ->
+                        Compatibilidad = 'Compatible';
+                        write('Refrigeracion inadecuada.'), nl, fail);
+                    write('Potencia insuficiente.'), nl, fail);
+                write('Almacenamiento incompatible.'), nl, fail);
+            write('RAM incompatible.'), nl, fail);
+        write('Procesador y placa base incompatibles.'), nl, fail).
+
+% Compatibilidad de procesador y placa base
+compatible_procesador_placabase('Intel Core i9', 'ASUS ROG Strix').
+compatible_procesador_placabase('Intel Core i7', 'Gigabyte Z490').
+compatible_procesador_placabase('AMD Ryzen 9', 'MSI B450').
+compatible_procesador_placabase('AMD Ryzen 7', 'ASRock B550').
+compatible_procesador_placabase('Intel Core i9', 'Gigabyte Z490').
+% Añadir más combinaciones según sea necesario
+
+% Compatibilidad de RAM y placa base
+compatible_ram_placabase('8GB', 'ASUS ROG Strix').
+compatible_ram_placabase('16GB', 'ASUS ROG Strix').
+compatible_ram_placabase('32GB', 'ASUS ROG Strix').
+compatible_ram_placabase('64GB', 'ASUS ROG Strix').
+compatible_ram_placabase('32GB', 'Gigabyte Z490').
+compatible_ram_placabase('32GB', 'MSI B450').
+compatible_ram_placabase('64GB', 'ASRock B550').
+% Añadir más combinaciones según sea necesario
+
+% Compatibilidad de almacenamiento y placa base
+compatible_almacenamiento_placabase('256GB SSD', 'ASUS ROG Strix').
+compatible_almacenamiento_placabase('512GB SSD', 'ASUS ROG Strix').
+compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
+compatible_almacenamiento_placabase('2TB SSD', 'ASUS ROG Strix').
+
+compatible_almacenamiento_placabase('512GB SSD', 'Gigabyte Z490').
+compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
+compatible_almacenamiento_placabase('2TB SSD', 'MSI B450').
+compatible_almacenamiento_placabase('256GB SSD', 'ASRock B550').
+% Añadir más combinaciones según sea necesario
+
+% Comprobación de potencia suficiente
+suficiente_potencia('500W', 'Intel Core i9', '8GB', '256GB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('650W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('750W', 'Intel Core i9', '32GB', '1TB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('850W', 'Intel Core i9', '64GB', '2TB SSD', 'ASUS ROG Strix', 'Liquida').
+
+suficiente_potencia('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
+suficiente_potencia('500W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+
+% Añadir más combinaciones según sea necesario
+
+% Refrigeración adecuada
+refrigeracion_adecuada('Liquida', 'Intel Core i9').
+refrigeracion_adecuada('Aire', 'Intel Core i7').
+% Añadir más combinaciones según sea necesario
 
 % Calcular uso total
 calcular_uso_total(_, _, _, _, _, _, 'Uso total calculado'). % Placeholder
 
 % Clasificar gama y uso
-clasificar_gama_uso(_, _, 'Gama alta', 'Uso recomendado'). % Placeholder
+clasificar_gama_uso(Procesador, RAM, Gama, Uso) :-
+    calcular_puntuacion(Procesador, RAM, Puntuacion), (Puntuacion >= 90 -> Gama = 'Gama alta'; Puntuacion >= 60 -> Gama = 'Gama media'; Gama = 'Gama baja'),
+    recomendar_uso(Procesador, RAM, Uso).
+
+% Calcular una puntuaci�n en base a los componentes
+calcular_puntuacion(Procesador, RAM, Puntuacion) :-
+    puntuacion_procesador(Procesador, PuntuacionProcesador),
+    puntuacion_ram(RAM, PuntuacionRAM), 
+	Puntuacion is PuntuacionProcesador + PuntuacionRAM.
+
+% Puntuaciones de procesadores
+puntuacion_procesador('Intel Core i9', 50).
+puntuacion_procesador('Intel Core i7', 40).
+puntuacion_procesador('AMD Ryzen 9', 50).
+puntuacion_procesador('AMD Ryzen 7', 40).
+% Puntuaciones de RAM
+puntuacion_ram('8GB', 20).
+puntuacion_ram('16GB', 30).
+puntuacion_ram('32GB', 40).
+puntuacion_ram('64GB', 50).
+
+% Recomendaciones de uso
+recomendar_uso(Procesador, RAM, Uso) :-
+    (Procesador = 'Intel Core i9', RAM = '32GB' -> Uso = 'Gaming y Renderizado';
+     Procesador = 'AMD Ryzen 9', RAM = '32GB' -> Uso = 'Gaming y Renderizado';
+     Procesador = 'Intel Core i7', RAM = '16GB' -> Uso = 'Programaci�n';
+     Procesador = 'AMD Ryzen 7', RAM = '16GB' -> Uso = 'Programaci�n';
+     Uso = 'Uso general').
+
 
 % Resumen final
 resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal) :-
@@ -139,7 +225,7 @@ resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion,
     format('Gama: ~w\n', [Gama]),
     format('Uso recomendado: ~w\n', [Uso]),
     format('Compatibilidad: ~w\n', [Compatibilidad]),
-    format('Uso total: ~w\n', [UsoTotal]).
+    format('Puntuaci�n: ~w\n', [Puntuacion]).
 
 % Configuración prediseñada
 configuracion_predisenada :-

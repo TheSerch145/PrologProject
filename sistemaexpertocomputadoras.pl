@@ -69,7 +69,7 @@ preguntar_componente(placa_base, Respuesta) :-
 
 preguntar_componente(fuente_alimentacion, Respuesta) :-
     opciones_fuente_alimentacion(Opciones),
-    write('Elige la fuente de alimentaciÃ³n:'), nl,
+    write('Elige la fuente de alimentacion:'), nl,
     listar_opciones(Opciones),
     read(Opcion),
     nth1(Opcion, Opciones, Respuesta).
@@ -81,7 +81,7 @@ preguntar_componente(refrigeracion, Respuesta) :-
     read(Opcion),
     nth1(Opcion, Opciones, Respuesta).
 
-% FunciÃ³n para listar las opciones disponibles con Ã­ndices
+% Funcion para listar las opciones disponibles con indices
 listar_opciones(Opciones) :-
     listar_opciones(Opciones, 1).
 
@@ -95,7 +95,7 @@ listar_opciones([Opcion | Resto], Indice) :-
 sistema_experto :-
     write('Que tipo de computadora deseas?'), nl,
     write('1. Personalizada'), nl,
-    write('2. PrediseÃ±ada'), nl,
+    write('2. Predisenada'), nl,
     read(Tipo),
     (
         Tipo == 1 ->
@@ -126,14 +126,13 @@ evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refri
             (compatible_almacenamiento_placabase(Almacenamiento, PlacaBase) ->
                 (suficiente_potencia(Fuente, Procesador, RAM, Almacenamiento, PlacaBase, Refrigeracion) ->
                     (refrigeracion_adecuada(Refrigeracion, Procesador) ->
-			(computadoras_economicas(Fuente, Procesador, RAM, Almacenamiento, PlacaBase, Refrigeracion)->
-                        	Compatibilidad = 'Compatible';
-                         write('No es economica.'), nl, fail);
+                        Compatibilidad = 'Compatible';
                         write('Refrigeracion inadecuada.'), nl, fail);
                     write('Potencia insuficiente.'), nl, fail);
                 write('Almacenamiento incompatible.'), nl, fail);
             write('RAM incompatible.'), nl, fail);
         write('Procesador y placa base incompatibles.'), nl, fail).
+
 
 % Compatibilidad de procesador y placa base
 compatible_procesador_placabase('Intel Core i9', 'ASUS ROG Strix').
@@ -144,7 +143,6 @@ compatible_procesador_placabase('Intel Core i9', 'Gigabyte Z490').
 compatible_procesador_placabase('Intel Core i7',  'MSI B450').
 compatible_procesador_placabase('AMD Ryzen 9', 'ASRock B550').
 
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 
 % Compatibilidad de RAM y placa base
 compatible_ram_placabase('8GB', 'ASUS ROG Strix').
@@ -154,7 +152,6 @@ compatible_ram_placabase('64GB', 'ASUS ROG Strix').
 compatible_ram_placabase('32GB', 'Gigabyte Z490').
 compatible_ram_placabase('32GB', 'MSI B450').
 compatible_ram_placabase('64GB', 'ASRock B550').
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 
 % Compatibilidad de almacenamiento y placa base
 compatible_almacenamiento_placabase('256GB SSD', 'ASUS ROG Strix').
@@ -171,9 +168,8 @@ compatible_almacenamiento_placabase('256GB SSD', 'MSI B450').
 compatible_almacenamiento_placabase('512GB SSD', 'MSI B450').
 
 compatible_almacenamiento_placabase('256GB SSD', 'ASRock B550').
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 
-% ComprobaciÃ³n de potencia suficiente
+% Comprobacion de potencia suficiente
 suficiente_potencia('500W', 'Intel Core i9', '8GB', '256GB SSD', 'ASUS ROG Strix', 'Liquida').
 suficiente_potencia('650W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
 suficiente_potencia('750W', 'Intel Core i9', '32GB', '1TB SSD', 'ASUS ROG Strix', 'Liquida').
@@ -187,12 +183,11 @@ computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550'
 computadoras_economicas('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
 computadoras_economicas('650W', 'Intel Core i7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
-
-% RefrigeraciÃ³n adecuada
+% Refrigeracion adecuada
 refrigeracion_adecuada('Liquida', 'Intel Core i9').
 refrigeracion_adecuada('Aire', 'Intel Core i7').
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
+refrigeracion_adecuada('Disipador', 'Intel Core i7').
+refrigeracion_adecuada('Liquida', 'Intel Core i7').
 
 % Calcular uso total
 calcular_uso_total(_, _, _, _, _, _, 'Uso total calculado'). % Placeholder
@@ -230,32 +225,31 @@ recomendar_uso(Procesador, RAM, Uso) :-
 
 % Resumen final
 resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal) :-
-    format('Resumen de la configuraciÃ³n personalizada:\n'),
+    format('Resumen de la configuracion personalizada:\n'),
     format('Procesador: ~w\n', [Procesador]),
     format('Memoria RAM: ~w\n', [RAM]),
     format('Almacenamiento: ~w\n', [Almacenamiento]),
     format('Placa base: ~w\n', [PlacaBase]),
-    format('Fuente de alimentaciÃ³n: ~w\n', [Fuente]),
-    format('RefrigeraciÃ³n: ~w\n', [Refrigeracion]),
+    format('Fuente de alimentacion: ~w\n', [Fuente]),
+    format('Refrigeracion: ~w\n', [Refrigeracion]),
     format('Gama: ~w\n', [Gama]),
     format('Uso recomendado: ~w\n', [Uso]),
-    format('Compatibilidad: ~w\n', [Compatibilidad]),
-    format('Puntuación: ~w\n', [Puntuacion]).
+    format('Compatibilidad: ~w\n', [Compatibilidad]).
 
-% ConfiguraciÃ³n prediseÃ±ada
+% Configuracion predisenada
 configuracion_predisenada :-
-    write('Â¿Para quÃ© la necesitas?'), nl,
-    write('1. ProgramaciÃ³n'), nl,
+    write('¿Para que la necesitas?'), nl,
+    write('1. Programacion'), nl,
     write('2. Gaming'), nl,
     write('3. Renderizado'), nl,
     read(Campo),
     (
-        Campo == 1 -> CampoElegido = 'ProgramaciÃ³n';
+        Campo == 1 -> CampoElegido = 'Programacion';
         Campo == 2 -> CampoElegido = 'Gaming';
         Campo == 3 -> CampoElegido = 'Renderizado';
-        write('OpciÃ³n no vÃ¡lida.'), nl, fail
+        write('Opcion no valida.'), nl, fail
     ),
-    write('Â¿QuÃ© gama prefieres?'), nl,
+    write('¿Que gama prefieres?'), nl,
     write('1. Alta'), nl,
     write('2. Media'), nl,
     write('3. Baja'), nl,
@@ -264,7 +258,7 @@ configuracion_predisenada :-
         Gama == 1 -> GamaElegida = alta;
         Gama == 2 -> GamaElegida = media;
         Gama == 3 -> GamaElegida = baja;
-        write('OpciÃ³n no vÃ¡lida.'), nl, fail
+        write('Opcion no valida.'), nl, fail
     ),
     opcion_predisenada(CampoElegido, GamaElegida, Opciones),
     write('Opciones disponibles:'), nl,

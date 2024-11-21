@@ -162,9 +162,14 @@ compatible_almacenamiento_placabase('512GB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('2TB SSD', 'ASUS ROG Strix').
 
+compatible_almacenamiento_placabase('256GB SSD', 'Gigabyte Z490').
 compatible_almacenamiento_placabase('512GB SSD', 'Gigabyte Z490').
-compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
-compatible_almacenamiento_placabase('2TB SSD', 'MSI B450').
+compatible_almacenamiento_placabase('1TB SSD', 'Gigabyte Z490').
+compatible_almacenamiento_placabase('2TB SSD', 'Gigabyte Z490').
+
+compatible_almacenamiento_placabase('256GB SSD', 'MSI B450').
+compatible_almacenamiento_placabase('512GB SSD', 'MSI B450').
+
 compatible_almacenamiento_placabase('256GB SSD', 'ASRock B550').
 % AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 

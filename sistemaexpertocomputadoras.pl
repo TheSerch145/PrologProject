@@ -126,7 +126,9 @@ evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refri
             (compatible_almacenamiento_placabase(Almacenamiento, PlacaBase) ->
                 (suficiente_potencia(Fuente, Procesador, RAM, Almacenamiento, PlacaBase, Refrigeracion) ->
                     (refrigeracion_adecuada(Refrigeracion, Procesador) ->
-                        Compatibilidad = 'Compatible';
+			(computadoras_economicas(Fuente, Procesador, RAM, Almacenamiento, PlacaBase, Refrigeracion)->
+                        	Compatibilidad = 'Compatible';
+                         write('No es economica.'), nl, fail);
                         write('Refrigeracion inadecuada.'), nl, fail);
                     write('Potencia insuficiente.'), nl, fail);
                 write('Almacenamiento incompatible.'), nl, fail);
@@ -174,6 +176,11 @@ suficiente_potencia('850W', 'Intel Core i9', '64GB', '2TB SSD', 'ASUS ROG Strix'
 
 suficiente_potencia('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 suficiente_potencia('500W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+
+% Comprobacion computadoras economicas
+computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
+computadoras_economicas('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
+computadoras_economicas('650W', 'Intel Core i7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 
 % AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 

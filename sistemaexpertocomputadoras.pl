@@ -181,6 +181,8 @@ suficiente_potencia('500W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Stri
 computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 computadoras_economicas('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
 computadoras_economicas('650W', 'Intel Core i7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
+computadoras_economicas('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
+computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 
 % AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
 

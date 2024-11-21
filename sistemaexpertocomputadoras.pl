@@ -137,14 +137,12 @@ evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refri
 
 % Compatibilidad de procesador y placa base
 compatible_procesador_placabase('Intel Core i9', 'ASUS ROG Strix').
+compatible_procesador_placabase('Intel Core i7', 'ASUS ROG Strix').
 compatible_procesador_placabase('Intel Core i7', 'Gigabyte Z490').
 compatible_procesador_placabase('AMD Ryzen 9', 'MSI B450').
 compatible_procesador_placabase('AMD Ryzen 7', 'ASRock B550').
 compatible_procesador_placabase('Intel Core i9', 'Gigabyte Z490').
-compatible_procesador_placabase('Intel Core i7',  'MSI B450').
-compatible_procesador_placabase('AMD Ryzen 9', 'ASRock B550').
-
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
+compatible_procesador_placabase('AMD Ryzen 9', 'ASUS ROG Strix').
 
 % Compatibilidad de RAM y placa base
 compatible_ram_placabase('8GB', 'ASUS ROG Strix').
@@ -154,14 +152,14 @@ compatible_ram_placabase('64GB', 'ASUS ROG Strix').
 compatible_ram_placabase('32GB', 'Gigabyte Z490').
 compatible_ram_placabase('32GB', 'MSI B450').
 compatible_ram_placabase('64GB', 'ASRock B550').
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
+compatible_ram_placabase('8GB', 'ASRock B550').
+
 
 % Compatibilidad de almacenamiento y placa base
 compatible_almacenamiento_placabase('256GB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('512GB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('2TB SSD', 'ASUS ROG Strix').
-
 compatible_almacenamiento_placabase('512GB SSD', 'Gigabyte Z490').
 compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('2TB SSD', 'MSI B450').
@@ -173,21 +171,27 @@ suficiente_potencia('500W', 'Intel Core i9', '8GB', '256GB SSD', 'ASUS ROG Strix
 suficiente_potencia('650W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
 suficiente_potencia('750W', 'Intel Core i9', '32GB', '1TB SSD', 'ASUS ROG Strix', 'Liquida').
 suficiente_potencia('850W', 'Intel Core i9', '64GB', '2TB SSD', 'ASUS ROG Strix', 'Liquida').
-
 suficiente_potencia('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 suficiente_potencia('500W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 
 % Comprobacion computadoras economicas
 computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 computadoras_economicas('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
 computadoras_economicas('650W', 'Intel Core i7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
-
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
+computadoras_economicas('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte490', 'Disipador').
+computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 
 % RefrigeraciÃ³n adecuada
 refrigeracion_adecuada('Liquida', 'Intel Core i9').
 refrigeracion_adecuada('Aire', 'Intel Core i7').
-% AÃ±adir mÃ¡s combinaciones segÃºn sea necesario
+refrigeracion_adecuada('Disipador', 'Intel Core i9').
+refrigeracion_adecuada('Disipador', 'Intel Core i7').
+refrigeracion_adecuada('Aire', 'AMD Ryzen 7').
+refrigeracion_adecuada('Disipador', 'AMD Ryzen 7').
+refrigeracion_adecuada('Liquida', 'AMD Ryzen 9').
+refrigeracion_adecuada('Disipador', 'AMD Ryzen 9').
+
 
 % Calcular uso total
 calcular_uso_total(_, _, _, _, _, _, 'Uso total calculado'). % Placeholder

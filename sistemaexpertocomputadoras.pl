@@ -143,14 +143,22 @@ compatible_procesador_placabase('AMD Ryzen 9', 'MSI B450').
 compatible_procesador_placabase('AMD Ryzen 7', 'ASRock B550').
 compatible_procesador_placabase('Intel Core i9', 'Gigabyte Z490').
 compatible_procesador_placabase('Intel Core i7',  'MSI B450').
-compatible_procesador_placabase('AMD Ryzen 9', 'ASRock B550').
-
+compatible_procesador_placabase('Intel Core i9-14900KF', 'ASUS ROG Strix').
+compatible_procesador_placabase('Intel Core i9-14900KF', 'Gigabyte Z490').
+compatible_procesador_placabase('Intel Core i9-14900KF', 'MSI B450').
+compatible_procesador_placabase('Intel Core i9-14900KF', 'ASRock B550').
+compatible_procesador_placabase('Intel Core i9-14900KF', 'MSI MPG Z790 Wifi II').
 
 % Compatibilidad de RAM y placa base
 compatible_ram_placabase('8GB', 'ASUS ROG Strix').
 compatible_ram_placabase('16GB', 'ASUS ROG Strix').
 compatible_ram_placabase('32GB', 'ASUS ROG Strix').
 compatible_ram_placabase('64GB', 'ASUS ROG Strix').
+
+compatible_ram_placabase('8GB', 'MSI MPG Z790 Wifi II').
+compatible_ram_placabase('16GB', 'MSI MPG Z790 Wifi II').
+compatible_ram_placabase('32GB', 'MSI MPG Z790 Wifi II').
+compatible_ram_placabase('64GB', 'MSI MPG Z790 Wifi II').
 
 compatible_ram_placabase('8GB', 'Gigabyte Z490').
 compatible_ram_placabase('16GB', 'Gigabyte Z490').
@@ -168,6 +176,11 @@ compatible_almacenamiento_placabase('256GB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('512GB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('1TB SSD', 'ASUS ROG Strix').
 compatible_almacenamiento_placabase('2TB SSD', 'ASUS ROG Strix').
+
+compatible_almacenamiento_placabase('256GB SSD', 'MSI MPG Z790 Wifi II').
+compatible_almacenamiento_placabase('512GB SSD', 'MSI MPG Z790 Wifi II').
+compatible_almacenamiento_placabase('1TB SSD', 'MSI MPG Z790 Wifi II').
+compatible_almacenamiento_placabase('2TB SSD', 'MSI MPG Z790 Wifi II').
 
 compatible_almacenamiento_placabase('256GB SSD', 'Gigabyte Z490').
 compatible_almacenamiento_placabase('512GB SSD', 'Gigabyte Z490').
@@ -193,6 +206,11 @@ suficiente_potencia('650W', 'AMD Ryzen 9', '16GB', '512GB SSD', 'ASUS ROG Strix'
 suficiente_potencia('750W', 'AMD Ryzen 9', '32GB', '1TB SSD', 'ASUS ROG Strix', 'Liquida').
 suficiente_potencia('850W', 'AMD Ryzen 9', '64GB', '2TB SSD', 'ASUS ROG Strix', 'Liquida').
 
+suficiente_potencia('500W', 'Intel Core i9-14900KF', '8GB', '256GB SSD', 'MSI MPG Z790 Wifi II', 'Liquida').
+suficiente_potencia('650W', 'Intel Core i9-14900KF', '16GB', '512GB SSD', 'MSI MPG Z790 Wifi II', 'Liquida').
+suficiente_potencia('750W', 'Intel Core i9-14900KF', '32GB', '1TB SSD', 'MSI MPG Z790 Wifi II', 'Liquida').
+suficiente_potencia('850W', 'Intel Core i9-14900KF', '64GB', '2TB SSD', 'MSI MPG Z790 Wifi II', 'Liquida').
+
 suficiente_potencia('650W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 suficiente_potencia('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
 
@@ -212,6 +230,8 @@ refrigeracion_adecuada('Liquida', 'AMD Ryzen 9').
 refrigeracion_adecuada('Liquida', 'AMD Ryzen 7').
 refrigeracion_adecuada('Aire', 'AMD Ryzen 7').
 refrigeracion_adecuada('Aire', 'AMD Ryzen 9').
+refrigeracion_adecuada('Liquida', 'Intel Core i9-14900KF').
+refrigeracion_adecuada('Aire', 'Intel Core i9-14900KF').
 
 % Clasificar gama y uso
 clasificar_uso(Procesador, RAM, Uso) :-

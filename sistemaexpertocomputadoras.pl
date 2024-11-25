@@ -114,9 +114,8 @@ configuracion_personalizada :-
     preguntar_componente(fuente_alimentacion, Fuente),
     preguntar_componente(refrigeracion, Refrigeracion),
     (evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Compatibilidad) ->
-        calcular_puntuacion(Procesador, RAM, Puntuacion),
-        clasificar_gama_uso(Procesador, RAM, Gama, Uso),
-        resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal);
+        clasificar_uso(Procesador, RAM, Uso),
+        resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Uso, Compatibilidad);
         write('Los componentes seleccionados no son compatibles.'), nl).
 
 % Evaluar compatibilidad
@@ -136,6 +135,9 @@ evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refri
 
 % Compatibilidad de procesador y placa base
 compatible_procesador_placabase('Intel Core i9', 'ASUS ROG Strix').
+compatible_procesador_placabase('Intel Core i7', 'ASUS ROG Strix').
+compatible_procesador_placabase('AMD Ryzen 7', 'ASUS ROG Strix').
+compatible_procesador_placabase('AMD Ryzen 9', 'ASUS ROG Strix').
 compatible_procesador_placabase('Intel Core i7', 'Gigabyte Z490').
 compatible_procesador_placabase('AMD Ryzen 9', 'MSI B450').
 compatible_procesador_placabase('AMD Ryzen 7', 'ASRock B550').
@@ -149,9 +151,17 @@ compatible_ram_placabase('8GB', 'ASUS ROG Strix').
 compatible_ram_placabase('16GB', 'ASUS ROG Strix').
 compatible_ram_placabase('32GB', 'ASUS ROG Strix').
 compatible_ram_placabase('64GB', 'ASUS ROG Strix').
+
+compatible_ram_placabase('8GB', 'Gigabyte Z490').
+compatible_ram_placabase('16GB', 'Gigabyte Z490').
 compatible_ram_placabase('32GB', 'Gigabyte Z490').
-compatible_ram_placabase('32GB', 'MSI B450').
+compatible_ram_placabase('64GB', 'Gigabyte Z490').
+
+compatible_ram_placabase('32GB', 'ASRock B550').
 compatible_ram_placabase('64GB', 'ASRock B550').
+
+compatible_ram_placabase('32GB', 'MSI B450').
+compatible_ram_placabase('64GB', 'MSI B450').
 
 % Compatibilidad de almacenamiento y placa base
 compatible_almacenamiento_placabase('256GB SSD', 'ASUS ROG Strix').
@@ -178,6 +188,14 @@ suficiente_potencia('850W', 'Intel Core i9', '64GB', '2TB SSD', 'ASUS ROG Strix'
 suficiente_potencia('650W', 'Intel Core i7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
 suficiente_potencia('500W', 'Intel Core i9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
 
+suficiente_potencia('500W', 'AMD Ryzen 9', '8GB', '256GB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('650W', 'AMD Ryzen 9', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('750W', 'AMD Ryzen 9', '32GB', '1TB SSD', 'ASUS ROG Strix', 'Liquida').
+suficiente_potencia('850W', 'AMD Ryzen 9', '64GB', '2TB SSD', 'ASUS ROG Strix', 'Liquida').
+
+suficiente_potencia('650W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Aire').
+suficiente_potencia('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'ASUS ROG Strix', 'Liquida').
+
 % Comprobacion computadoras economicas
 computadoras_economicas('500W', 'AMD Ryzen 7', '8GB', '256GB SSD', 'ASRock B550', 'Aire').
 computadoras_economicas('500W', 'AMD Ryzen 7', '16GB', '512GB SSD', 'Gigabyte Z490', 'Disipador').
@@ -190,31 +208,14 @@ refrigeracion_adecuada('Liquida', 'Intel Core i9').
 refrigeracion_adecuada('Aire', 'Intel Core i7').
 refrigeracion_adecuada('Disipador', 'Intel Core i7').
 refrigeracion_adecuada('Liquida', 'Intel Core i7').
-
-% Calcular uso total
-calcular_uso_total(_, _, _, _, _, _, 'Uso total calculado'). % Placeholder
+refrigeracion_adecuada('Liquida', 'AMD Ryzen 9').
+refrigeracion_adecuada('Liquida', 'AMD Ryzen 7').
+refrigeracion_adecuada('Aire', 'AMD Ryzen 7').
+refrigeracion_adecuada('Aire', 'AMD Ryzen 9').
 
 % Clasificar gama y uso
-clasificar_gama_uso(Procesador, RAM, Gama, Uso) :-
-    calcular_puntuacion(Procesador, RAM, Puntuacion), (Puntuacion >= 90 -> Gama = 'Gama alta'; Puntuacion >= 60 -> Gama = 'Gama media'; Gama = 'Gama baja'),
+clasificar_uso(Procesador, RAM, Uso) :-
     recomendar_uso(Procesador, RAM, Uso).
-
-% Calcular una puntuación en base a los componentes
-calcular_puntuacion(Procesador, RAM, Puntuacion) :-
-    puntuacion_procesador(Procesador, PuntuacionProcesador),
-    puntuacion_ram(RAM, PuntuacionRAM), 
-	Puntuacion is PuntuacionProcesador + PuntuacionRAM.
-
-% Puntuaciones de procesadores
-puntuacion_procesador('Intel Core i9', 50).
-puntuacion_procesador('Intel Core i7', 40).
-puntuacion_procesador('AMD Ryzen 9', 50).
-puntuacion_procesador('AMD Ryzen 7', 40).
-% Puntuaciones de RAM
-puntuacion_ram('8GB', 20).
-puntuacion_ram('16GB', 30).
-puntuacion_ram('32GB', 40).
-puntuacion_ram('64GB', 50).
 
 % Recomendaciones de uso
 recomendar_uso(Procesador, RAM, Uso) :-
@@ -226,7 +227,7 @@ recomendar_uso(Procesador, RAM, Uso) :-
 
 
 % Resumen final
-resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Gama, Uso, Compatibilidad, UsoTotal) :-
+resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion, Uso, Compatibilidad) :-
     format('Resumen de la configuracion personalizada:\n'),
     format('Procesador: ~w\n', [Procesador]),
     format('Memoria RAM: ~w\n', [RAM]),
@@ -234,7 +235,6 @@ resumen_final(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refrigeracion,
     format('Placa base: ~w\n', [PlacaBase]),
     format('Fuente de alimentacion: ~w\n', [Fuente]),
     format('Refrigeracion: ~w\n', [Refrigeracion]),
-    format('Gama: ~w\n', [Gama]),
     format('Uso recomendado: ~w\n', [Uso]),
     format('Compatibilidad: ~w\n', [Compatibilidad]).
 

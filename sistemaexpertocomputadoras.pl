@@ -15,8 +15,8 @@ opcion_predisenada('Programacion', media,
     ['Intel Core i7, 16GB RAM, 512GB SSD, GTX 1660',
      'AMD Ryzen 7, 16GB RAM, 512GB SSD, GTX 1660 Ti']).
 opcion_predisenada('Programacion', baja,
-    ['Intel Core i5-14400, 8GB RAM, 256GB SSD, GTX 1050',
-     'AMD Ryzen 5, 8GB RAM, 256GB SSD, GTX 1050']).
+    ['Intel Core i5-14400, 8GB RAM, 256GB SSD',
+     'AMD Ryzen 5, 8GB RAM, 256GB SSD']).
 
 opcion_predisenada('Gaming', alta,
     ['Intel Core i9-14900KF, 64GB RAM, 1TB SSD, RTX 4090',
@@ -25,8 +25,8 @@ opcion_predisenada('Gaming', media,
     ['Intel Core i7, 16GB RAM, 512GB SSD, RTX 3060',
      'AMD Ryzen 7, 16GB RAM, 512GB SSD, RTX 3060']).
 opcion_predisenada('Gaming', baja,
-    ['Intel Core i5, 8GB RAM, 256GB SSD, GTX 1650',
-     'AMD Ryzen 5, 8GB RAM, 256GB SSD, GTX 1650']).
+    ['Intel Core i5, 8GB RAM, 256GB SSD',
+     'AMD Ryzen 5, 8GB RAM, 256GB SSD']).
 
 opcion_predisenada('Renderizado', alta,
     ['Intel Core i9 9a Gen, 64GB RAM, 2TB SSD, RTX 3090',

@@ -1,25 +1,25 @@
 % Opciones de componentes
-opciones_procesador(['Intel Core i9', 'Intel Core i7', 'AMD Ryzen 9', 'AMD Ryzen 7']).
+opciones_procesador(['Intel Core i9', 'Intel Core i7', 'AMD Ryzen 9', 'AMD Ryzen 7', 'Intel Core i9-14900KF']).
 opciones_ram(['8GB', '16GB', '32GB', '64GB']).
 opciones_almacenamiento(['256GB SSD', '512GB SSD', '1TB SSD', '2TB SSD']).
-opciones_placa_base(['ASUS ROG Strix', 'MSI B450', 'Gigabyte Z490', 'ASRock B550']).
+opciones_placa_base(['ASUS ROG Strix', 'MSI B450', 'Gigabyte Z490', 'ASRock B550', 'MSI MPG Z790 Wifi II']).
 opciones_fuente_alimentacion(['500W', '650W', '750W', '850W']).
 opciones_refrigeracion(['Aire', 'Liquida', 'Disipador']).
 
 opcion(personalizada, 'Configurador personalizado en desarrollo...').
 
 opcion_predisenada('Programacion', alta,
-    ['Intel Core i9, 32GB RAM, 1TB SSD, RTX 3080',
+    ['Intel Core i9, 32GB RAM, 1TB SSD, Asus TUF RTX 4090',
      'AMD Ryzen 9, 32GB RAM, 1TB SSD, RTX 3080']).
 opcion_predisenada('Programacion', media,
     ['Intel Core i7, 16GB RAM, 512GB SSD, GTX 1660',
-     'AMD Ryzen 7, 16GB RAM, 512GB SSD, GTX 1660']).
+     'AMD Ryzen 7, 16GB RAM, 512GB SSD, GTX 1660 Ti']).
 opcion_predisenada('Programacion', baja,
-    ['Intel Core i5, 8GB RAM, 256GB SSD, GTX 1050',
+    ['Intel Core i5-14400, 8GB RAM, 256GB SSD, GTX 1050',
      'AMD Ryzen 5, 8GB RAM, 256GB SSD, GTX 1050']).
 
 opcion_predisenada('Gaming', alta,
-    ['Intel Core i9, 32GB RAM, 1TB SSD, RTX 4090',
+    ['Intel Core i9-14900KF, 64GB RAM, 1TB SSD, RTX 4090',
      'AMD Ryzen 9, 32GB RAM, 1TB SSD, RTX 4090']).
 opcion_predisenada('Gaming', media,
     ['Intel Core i7, 16GB RAM, 512GB SSD, RTX 3060',
@@ -29,11 +29,11 @@ opcion_predisenada('Gaming', baja,
      'AMD Ryzen 5, 8GB RAM, 256GB SSD, GTX 1650']).
 
 opcion_predisenada('Renderizado', alta,
-    ['Intel Core i9, 64GB RAM, 2TB SSD, RTX 3090',
+    ['Intel Core i9 9a Gen, 64GB RAM, 2TB SSD, RTX 3090',
      'AMD Ryzen 9, 64GB RAM, 2TB SSD, RTX 3090']).
 opcion_predisenada('Renderizado', media,
-    ['Intel Core i7, 32GB RAM, 1TB SSD, RTX 2070',
-     'AMD Ryzen 7, 32GB RAM, 1TB SSD, RTX 2070']).
+    ['Intel Core i7 6a Gen, 32GB RAM, 1TB SSD, RTX 2070',
+     'AMD Ryzen 7 7700, 32GB RAM, 1TB SSD, RTX 2070']).
 opcion_predisenada('Renderizado', baja,
     ['Intel Core i5, 16GB RAM, 512GB SSD, GTX 1660',
      'AMD Ryzen 5, 16GB RAM, 512GB SSD, GTX 1660']).

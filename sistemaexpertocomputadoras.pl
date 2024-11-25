@@ -1,5 +1,5 @@
 % Opciones de componentes
-opciones_procesador(['Intel Core i9', 'Intel Core i7', 'AMD Ryzen 9', 'AMD Ryzen 7', 'Intel Core i9-14900KF']).
+opciones_procesador(['Intel Core i9', 'Intel Core i7', 'AMD Ryzen 9', 'AMD Ryzen 7', 'Intel Core i9-14900KF', 'AMD Ryzen 7 9700X']).
 opciones_ram(['8GB', '16GB', '32GB', '64GB']).
 opciones_almacenamiento(['256GB SSD', '512GB SSD', '1TB SSD', '2TB SSD']).
 opciones_placa_base(['ASUS ROG Strix', 'MSI B450', 'Gigabyte Z490', 'ASRock B550', 'MSI MPG Z790 Wifi II']).
@@ -149,6 +149,12 @@ compatible_procesador_placabase('Intel Core i9-14900KF', 'MSI B450').
 compatible_procesador_placabase('Intel Core i9-14900KF', 'ASRock B550').
 compatible_procesador_placabase('Intel Core i9-14900KF', 'MSI MPG Z790 Wifi II').
 
+compatible_procesador_placabase('AMD Ryzen 7 9700X', 'ASUS ROG Strix').
+compatible_procesador_placabase('AMD Ryzen 7 9700X', 'Gigabyte Z490').
+compatible_procesador_placabase('AMD Ryzen 7 9700X', 'MSI B450').
+compatible_procesador_placabase('AMD Ryzen 7 9700X', 'ASRock B550').
+compatible_procesador_placabase('AMD Ryzen 7 9700X', 'MSI MPG Z790 Wifi II').
+
 % Compatibilidad de RAM y placa base
 compatible_ram_placabase('8GB', 'ASUS ROG Strix').
 compatible_ram_placabase('16GB', 'ASUS ROG Strix').
@@ -232,6 +238,10 @@ refrigeracion_adecuada('Aire', 'AMD Ryzen 7').
 refrigeracion_adecuada('Aire', 'AMD Ryzen 9').
 refrigeracion_adecuada('Liquida', 'Intel Core i9-14900KF').
 refrigeracion_adecuada('Aire', 'Intel Core i9-14900KF').
+
+refrigeracion_adecuada('Aire', 'AMD Ryzen 7 9700X').
+refrigeracion_adecuada('Disipador', 'AMD Ryzen 7 9700X').
+refrigeracion_adecuada('Liquida', 'AMD Ryzen 7 9700X').
 
 % Clasificar gama y uso
 clasificar_uso(Procesador, RAM, Uso) :-

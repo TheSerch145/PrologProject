@@ -127,7 +127,7 @@ evaluar_compatibilidad(Procesador, RAM, Almacenamiento, PlacaBase, Fuente, Refri
                     (refrigeracion_adecuada(Refrigeracion, Procesador) ->
                         Compatibilidad = 'Compatible';
                         write('Refrigeracion inadecuada.'), nl, fail);
-                    write('Potencia insuficiente.'), nl, fail);
+                    write('Advertencia : Potencia insuficiente.'), nl);
                 write('Almacenamiento incompatible.'), nl, fail);
             write('RAM incompatible.'), nl, fail);
         write('Procesador y placa base incompatibles.'), nl, fail).
